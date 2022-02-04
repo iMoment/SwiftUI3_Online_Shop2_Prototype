@@ -52,7 +52,7 @@ struct LoginPage: View {
             ScrollView(.vertical, showsIndicators: false) {
                 // MARK: Login Form
                 VStack(spacing: 15) {
-                    Text("Login")
+                    Text(loginPageVM.registerUser ? "Register" : "Login")
                         .font(.custom(customFont, size: 22).bold())
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
@@ -68,6 +68,52 @@ struct LoginPage: View {
                         CustomTextField(icon: "envelope", title: "Confirm Password", hint: "123456", value: $loginPageVM.confirmPassword, showPassword: $loginPageVM.showConfirmPassword)
                             .padding(.top, 10)
                     }
+                    
+                    // MARK: Forgot Password Button
+                    Button {
+                        loginPageVM.forgotPassword()
+                    } label: {
+                        Text("Forgot password?")
+                            .font(.custom(customFont, size: 14))
+                            .fontWeight(.semibold)
+                            .foregroundColor(Color("purple01"))
+                    }
+                    .padding(.top, 8)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    // MARK: Login Button
+                    Button {
+                        if loginPageVM.registerUser {
+                            loginPageVM.register()
+                        } else {
+                            loginPageVM.login()
+                        }
+                    } label: {
+                        Text("Login")
+                            .font(.custom(customFont, size: 17).bold())
+                            .padding(.vertical, 20)
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(Color.white)
+                            .background(Color("purple01"))
+                            .cornerRadius(15)
+                            .shadow(color: Color.black.opacity(0.07), radius: 5, x: 5, y: 5)
+                    }
+                    .padding(.top, 25)
+                    .padding(.horizontal)
+                    
+                    // MARK: Register User Button
+                    Button {
+                        withAnimation {
+                            loginPageVM.registerUser.toggle()
+                        }
+                    } label: {
+                        Text(loginPageVM.registerUser ? "Back to Login" : "Create account")
+                            .font(.custom(customFont, size: 14))
+                            .fontWeight(.semibold)
+                            .foregroundColor(Color("purple01"))
+                    }
+                    .padding(.top, 8)
+                    
                 }
                 .padding(30)
                 
@@ -81,6 +127,15 @@ struct LoginPage: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("purple01"))
+        
+        // MARK: Clear data
+        .onChange(of: loginPageVM.registerUser) { _ in
+            loginPageVM.email = ""
+            loginPageVM.password = ""
+            loginPageVM.confirmPassword = ""
+            loginPageVM.showPassword = false
+            loginPageVM.showConfirmPassword = false
+        }
     }
     
     @ViewBuilder
@@ -95,7 +150,7 @@ struct LoginPage: View {
             }
             .foregroundColor(Color.black.opacity(0.8))
             
-            if title.contains("Password") {
+            if title.contains("Password") && !showPassword.wrappedValue {
                 SecureField(hint, text: value)
                     .padding(.top, 2)
             } else {
@@ -107,7 +162,21 @@ struct LoginPage: View {
                 .background(Color.black.opacity(0.4))
         }
         // MARK: Show Button for password field
-        
+        .overlay(
+            Group {
+                if title.contains("Password") {
+                    Button(action: {
+                        showPassword.wrappedValue.toggle()
+                    }, label: {
+                        Text(showPassword.wrappedValue ? "Hide" : "Show")
+                            .font(.custom(customFont, size: 13).bold())
+                            .foregroundColor(Color("purple01"))
+                    })
+                    .offset(y: 8)
+                }
+            }
+            , alignment: .trailing
+        )
     }
 }
 
