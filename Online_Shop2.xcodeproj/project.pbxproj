@@ -15,6 +15,7 @@
 		913738A627ADC47C0090BDC6 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 913738A527ADC47C0090BDC6 /* Raleway-Regular.ttf */; };
 		913738A827ADC4850090BDC6 /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 913738A727ADC4850090BDC6 /* Raleway-SemiBold.ttf */; };
 		913738AE27ADC5730090BDC6 /* OnBoardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913738AD27ADC5730090BDC6 /* OnBoardingPage.swift */; };
+		913738B127ADC8570090BDC6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913738B027ADC8570090BDC6 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		913738A727ADC4850090BDC6 /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
 		913738A927ADC4CF0090BDC6 /* Online-Shop2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Online-Shop2-Info.plist"; sourceTree = SOURCE_ROOT; };
 		913738AD27ADC5730090BDC6 /* OnBoardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPage.swift; sourceTree = "<group>"; };
+		913738B027ADC8570090BDC6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				913738AB27ADC54B0090BDC6 /* Model */,
 				913738AA27ADC53E0090BDC6 /* Views */,
 				913738AC27ADC5560090BDC6 /* Components */,
+				913738AF27ADC8490090BDC6 /* Helpers */,
 				9137389827ADC3150090BDC6 /* Assets.xcassets */,
 				9137389A27ADC3150090BDC6 /* Preview Content */,
 			);
@@ -111,6 +114,14 @@
 			children = (
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		913738AF27ADC8490090BDC6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				913738B027ADC8570090BDC6 /* Extensions.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +200,7 @@
 				9137389727ADC3140090BDC6 /* ContentView.swift in Sources */,
 				913738AE27ADC5730090BDC6 /* OnBoardingPage.swift in Sources */,
 				9137389527ADC3140090BDC6 /* Online_Shop2App.swift in Sources */,
+				913738B127ADC8570090BDC6 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
