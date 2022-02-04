@@ -14,6 +14,7 @@ class LoginPageVM: ObservableObject {
     @Published var showPassword: Bool = false
     
     // MARK: Register Properties
+    @Published var registerUser: Bool = false
     @Published var confirmPassword: String = ""
     @Published var showConfirmPassword: Bool = false
     

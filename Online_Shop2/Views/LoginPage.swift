@@ -51,7 +51,25 @@ struct LoginPage: View {
             
             ScrollView(.vertical, showsIndicators: false) {
                 // MARK: Login Form
-                
+                VStack(spacing: 15) {
+                    Text("Login")
+                        .font(.custom(customFont, size: 22).bold())
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    // Custom Text Field
+                    CustomTextField(icon: "envelope", title: "Email", hint: "onetwothreefour", value: $loginPageVM.email, showPassword: .constant(false))
+                        .padding(.top, 30)
+                    
+                    CustomTextField(icon: "lock", title: "Password", hint: "123456", value: $loginPageVM.password, showPassword: $loginPageVM.showPassword)
+                        .padding(.top, 10)
+                    
+                    // Register confirm password
+                    if loginPageVM.registerUser {
+                        CustomTextField(icon: "envelope", title: "Confirm Password", hint: "123456", value: $loginPageVM.confirmPassword, showPassword: $loginPageVM.showConfirmPassword)
+                            .padding(.top, 10)
+                    }
+                }
+                .padding(30)
                 
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -63,6 +81,33 @@ struct LoginPage: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("purple01"))
+    }
+    
+    @ViewBuilder
+    func CustomTextField(icon: String, title: String, hint: String, value: Binding<String>, showPassword: Binding<Bool>) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            
+            Label {
+                Text(title)
+                    .font(.custom(customFont, size: 14))
+            } icon: {
+                Image(systemName: icon)
+            }
+            .foregroundColor(Color.black.opacity(0.8))
+            
+            if title.contains("Password") {
+                SecureField(hint, text: value)
+                    .padding(.top, 2)
+            } else {
+                TextField(hint, text: value)
+                    .padding(.top, 2)
+            }
+            
+            Divider()
+                .background(Color.black.opacity(0.4))
+        }
+        // MARK: Show Button for password field
+        
     }
 }
 
