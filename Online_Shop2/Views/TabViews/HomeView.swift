@@ -54,11 +54,13 @@ struct HomeView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 25) {
                         
-                        ForEach(homeViewVM.products) { product in
+                        ForEach(homeViewVM.filteredProducts) { product in
                             ProductCardView(product: product)
                         }
                     }
                     .padding(.horizontal, 25)
+                    .padding(.bottom)
+                    .padding(.top, 80)
                 }
                 .padding(.top, 30)
             }
@@ -66,6 +68,10 @@ struct HomeView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("homeBG"))
+        // MARK: Updating data whenever tab changes
+        .onChange(of: homeViewVM.productType) { newValue in
+            homeViewVM.filterProductByType()
+        }
     }
     
     @ViewBuilder
@@ -73,6 +79,7 @@ struct HomeView: View {
         VStack(spacing: 10) {
             Image(product.productImage)
                 .resizable()
+//                .renderingMode(.)
                 .aspectRatio(contentMode: .fit)
                 .frame(width: getScreenSize().width / 2.5, height: getScreenSize().width / 2.5)
                 .offset(y: -80)

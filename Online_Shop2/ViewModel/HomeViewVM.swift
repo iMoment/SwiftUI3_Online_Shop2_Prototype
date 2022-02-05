@@ -25,6 +25,30 @@ class HomeViewVM: ObservableObject {
         Product(type: .tablets, title: "iPad Mini", subTitle: "A15 - Grey", price: "$599", productImage: "ipadMini"),
         Product(type: .laptops, title: "iMac", subTitle: "M1 - Purple", price: "$1599", productImage: "iMac")
     ]
+    
+    // MARK: Filter Products
+    @Published var filteredProducts: [Product] = []
+    
+    init() {
+        filterProductByType()
+    }
+    
+    func filterProductByType() {
+        DispatchQueue.global(qos: .userInteractive).async {
+            let results = self.products
+                .lazy
+                .filter { product in
+                    return product.type == self.productType
+                }
+                .prefix(4)
+            
+            DispatchQueue.main.async {
+                self.filteredProducts = results.compactMap({ product in
+                    return product
+                })
+            }
+        }
+    }
 }
 
 
