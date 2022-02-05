@@ -66,7 +66,7 @@ struct MainView: View {
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
+struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
     }
