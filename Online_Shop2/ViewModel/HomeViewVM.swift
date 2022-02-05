@@ -28,6 +28,7 @@ class HomeViewVM: ObservableObject {
     
     // MARK: Filter Products
     @Published var filteredProducts: [Product] = []
+    @Published var showMoreProductsOnType: Bool = false
     
     init() {
         filterProductByType()

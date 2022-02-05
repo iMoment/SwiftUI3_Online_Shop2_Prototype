@@ -63,6 +63,22 @@ struct HomeView: View {
                     .padding(.top, 80)
                 }
                 .padding(.top, 30)
+                
+                // MARK: See More Button
+                Button {
+                    homeViewVM.showMoreProductsOnType.toggle()
+                } label: {
+                    Label {
+                        Image(systemName: "arrow.right")
+                    } icon: {
+                        Text("see more")
+                    }
+                    .font(.custom(customFont, size: 15).bold())
+                    .foregroundColor(Color("purple01"))
+                }
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .padding(.trailing)
+                .padding(.top, 10)
             }
             .padding(.vertical)
         }
@@ -72,6 +88,12 @@ struct HomeView: View {
         .onChange(of: homeViewVM.productType) { newValue in
             homeViewVM.filterProductByType()
         }
+        .sheet(isPresented: $homeViewVM.showMoreProductsOnType) {
+            
+        } content: {
+            MoreProductsView()
+        }
+
     }
     
     @ViewBuilder

@@ -18,13 +18,20 @@ class LoginPageVM: ObservableObject {
     @Published var confirmPassword: String = ""
     @Published var showConfirmPassword: Bool = false
     
+    // Log Status
+    @AppStorage("log_Status") var log_Status: Bool = false
+    
     // MARK: Login Call
     func login() {
-        // TODO: Handle action
+        withAnimation {
+            log_Status = true
+        }
     }
     
     func register() {
-        // TODO: Handle action
+        withAnimation {
+            log_Status = true
+        }
     }
     
     func forgotPassword() {
