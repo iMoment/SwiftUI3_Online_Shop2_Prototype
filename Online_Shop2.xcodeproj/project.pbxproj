@@ -19,6 +19,7 @@
 		913738B327ADC97B0090BDC6 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913738B227ADC97B0090BDC6 /* LoginPage.swift */; };
 		913738B627ADC9A50090BDC6 /* LoginPageVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913738B527ADC9A50090BDC6 /* LoginPageVM.swift */; };
 		913738B827ADD0620090BDC6 /* CustomCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913738B727ADD0620090BDC6 /* CustomCorners.swift */; };
+		915933DA27AEF129006FCCF2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915933D927AEF129006FCCF2 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		913738B227ADC97B0090BDC6 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		913738B527ADC9A50090BDC6 /* LoginPageVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageVM.swift; sourceTree = "<group>"; };
 		913738B727ADD0620090BDC6 /* CustomCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCorners.swift; sourceTree = "<group>"; };
+		915933D927AEF129006FCCF2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,8 @@
 			children = (
 				913738AD27ADC5730090BDC6 /* OnBoardingPage.swift */,
 				913738B227ADC97B0090BDC6 /* LoginPage.swift */,
+				915933D927AEF129006FCCF2 /* MainView.swift */,
+				915933DB27AEF442006FCCF2 /* TabViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -139,6 +143,13 @@
 				913738B527ADC9A50090BDC6 /* LoginPageVM.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		915933DB27AEF442006FCCF2 /* TabViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TabViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +230,7 @@
 				9137389527ADC3140090BDC6 /* Online_Shop2App.swift in Sources */,
 				913738B327ADC97B0090BDC6 /* LoginPage.swift in Sources */,
 				913738B127ADC8570090BDC6 /* Extensions.swift in Sources */,
+				915933DA27AEF129006FCCF2 /* MainView.swift in Sources */,
 				913738B827ADD0620090BDC6 /* CustomCorners.swift in Sources */,
 				913738B627ADC9A50090BDC6 /* LoginPageVM.swift in Sources */,
 			);
