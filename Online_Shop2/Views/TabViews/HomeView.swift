@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    @Namespace var animation
+    @StateObject var homeViewVM: HomeViewVM = HomeViewVM()
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -48,21 +50,86 @@ struct HomeView: View {
                     .padding(.horizontal, 25)
                 }
                 .padding(.top, 28)
+                // MARK: Products Page
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 25) {
+                        
+                        ForEach(homeViewVM.products) { product in
+                            ProductCardView(product: product)
+                        }
+                    }
+                    .padding(.horizontal, 25)
+                }
+                .padding(.top, 30)
             }
             .padding(.vertical)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-//        .background(Color("homeBG"))
+        .background(Color("homeBG"))
+    }
+    
+    @ViewBuilder
+    func ProductCardView(product: Product)  -> some View {
+        VStack(spacing: 10) {
+            Image(product.productImage)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: getScreenSize().width / 2.5, height: getScreenSize().width / 2.5)
+                .offset(y: -80)
+                .padding(.bottom, -80)
+            
+            Text(product.title)
+                .font(.custom(customFont, size: 18))
+                .fontWeight(.semibold)
+                .padding(.top)
+            
+            Text(product.subTitle)
+                .font(.custom(customFont, size: 14))
+                .foregroundColor(Color.gray)
+            
+            Text(product.price)
+                .font(.custom(customFont, size: 16))
+                .fontWeight(.bold)
+                .foregroundColor(Color("purple01"))
+                .padding(.top, 5)
+        }
+        .padding(.horizontal, 20)
+        .padding(.bottom, 22)
+        .background(
+            Color.white
+                .cornerRadius(25)
+        )
     }
     
     @ViewBuilder
     func ProductTypeView(type: ProductType) -> some View {
         Button {
-            
+            withAnimation {
+                homeViewVM.productType = type
+            }
         } label: {
             Text(type.rawValue)
                 .font(.custom(customFont, size: 15))
                 .fontWeight(.semibold)
+                .foregroundColor(homeViewVM.productType == type ? Color("purple01") : Color.gray)
+                .padding(.bottom, 10)
+                .overlay(
+                    // MARK: Matched Geometry Effect
+                    ZStack {
+                        if homeViewVM.productType == type {
+                            Capsule()
+                                .fill(Color("purple01"))
+                                .matchedGeometryEffect(id: "PRODUCTTAB", in: animation)
+                                .frame(height: 2)
+                        } else {
+                            Capsule()
+                                .fill(Color.clear)
+                                .frame(height: 2)
+                        }
+                    }
+                    .padding(.horizontal, -5)
+                    , alignment: .bottom
+                )
         }
     }
 }
