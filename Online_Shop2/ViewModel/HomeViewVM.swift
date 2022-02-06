@@ -33,6 +33,7 @@ class HomeViewVM: ObservableObject {
     // MARK: Search Data
     @Published var searchText: String = ""
     @Published var searchActivated: Bool = false
+    @Published var searchedProducts: [Product]?
     
     init() {
         filterProductByType()
@@ -49,6 +50,22 @@ class HomeViewVM: ObservableObject {
             
             DispatchQueue.main.async {
                 self.filteredProducts = results.compactMap({ product in
+                    return product
+                })
+            }
+        }
+    }
+    
+    func filterProductBySearch() {
+        DispatchQueue.global(qos: .userInteractive).async {
+            let results = self.products
+                .lazy
+                .filter { product in
+                    return product.title.lowercased().contains(self.searchText.lowercased())
+                }
+            
+            DispatchQueue.main.async {
+                self.searchedProducts = results.compactMap({ product in
                     return product
                 })
             }

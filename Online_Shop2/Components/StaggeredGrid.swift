@@ -57,9 +57,19 @@ struct StaggeredGrid<Content: View, T: Identifiable>: View where T: Hashable {
                         content(object)
                     }
                 }
+                .padding(.top, getIndex(values: columnsData) == 1 ? 80 : 0)
             }
         }
         .padding(.vertical)
+    }
+    
+    // Move second row down
+    func getIndex(values: [T]) -> Int {
+        let index = setupList().firstIndex { t in
+            return t == values
+        } ?? 0
+        
+        return index
     }
 }
 

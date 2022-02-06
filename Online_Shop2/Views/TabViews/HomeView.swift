@@ -97,7 +97,7 @@ struct HomeView: View {
         .overlay(
             ZStack {
                 if homeViewVM.searchActivated {
-                    SearchView(animation: animation)
+                    SearchView()
                         .environmentObject(homeViewVM)
                 }
             }
@@ -194,5 +194,6 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+            .environmentObject(HomeViewVM())
     }
 }
