@@ -23,6 +23,8 @@ struct ProfilePage: View {
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 60, height: 60)
                             .clipShape(Circle())
+                            .offset(y: -30)
+                            .padding(.bottom, -30)
                         
                         Text("Sanghwa Kim")
                             .font(.custom(customFont, size: 16))
@@ -43,17 +45,88 @@ struct ProfilePage: View {
                         Color.white
                             .cornerRadius(12)
                     )
+                    .padding()
+                    .padding(.top, 40)
                 }
                 .padding(.horizontal, 22)
                 .padding(.vertical, 20)
+                
+                // MARK: Custom Navigation Links
+                CustomNavigationLink(title: "Edit Profile") {
+                    Text("")
+                        .navigationTitle("Edit Profile")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color("homeBG").ignoresSafeArea())
+                }
+                
+                CustomNavigationLink(title: "Shipping address") {
+                    Text("")
+                        .navigationTitle("Shipping address")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color("homeBG").ignoresSafeArea())
+                }
+                
+                CustomNavigationLink(title: "Order history") {
+                    Text("")
+                        .navigationTitle("Order history")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color("homeBG").ignoresSafeArea())
+                }
+                
+                CustomNavigationLink(title: "Payment methods") {
+                    Text("")
+                        .navigationTitle("Payment Methods")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color("homeBG").ignoresSafeArea())
+                }
+                
+                CustomNavigationLink(title: "Notifications") {
+                    Text("")
+                        .navigationTitle("Notifications")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color("homeBG").ignoresSafeArea())
+                }
+                
+                CustomNavigationLink(title: "Support Center") {
+                    Text("")
+                        .navigationTitle("Support Center")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color("homeBG").ignoresSafeArea())
+                }
+                
             }
+            .navigationBarHidden(true)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(
+                Color("homeBG")
+                    .ignoresSafeArea()
+            )
         }
-        .navigationBarHidden(true)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(
-            Color("homeBG")
-                .ignoresSafeArea()
-        )
+    }
+    
+    @ViewBuilder
+    func CustomNavigationLink<Detail: View>(title: String, @ViewBuilder content: @escaping () -> Detail) -> some View {
+        NavigationLink {
+            content()
+        } label: {
+            HStack {
+                Text(title)
+                    .font(.custom(customFont, size: 17))
+                    .fontWeight(.semibold)
+                
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+            }
+            .foregroundColor(Color.black)
+            .padding()
+            .background(
+                Color.white
+                    .cornerRadius(12)
+            )
+            .padding(.horizontal)
+            .padding(.top, 10)
+        }
     }
 }
 
