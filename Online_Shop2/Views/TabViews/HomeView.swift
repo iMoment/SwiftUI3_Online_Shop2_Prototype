@@ -15,6 +15,7 @@ struct HomeView: View {
         ScrollView(.vertical, showsIndicators: false) {
             
             VStack(spacing: 15) {
+                // MARK: Search Bar
                 ZStack {
                     if homeViewVM.searchActivated {
                         SearchBar()
@@ -25,6 +26,12 @@ struct HomeView: View {
                 }
                 .frame(width: getScreenSize().width / 1.6)
                 .padding(.horizontal, 25)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    withAnimation(.easeInOut) {
+                        homeViewVM.searchActivated = true
+                    }
+                }
                 
                 Text("Order online,\nCollect in store!")
                     .font(.custom(customFont, size: 28).bold())

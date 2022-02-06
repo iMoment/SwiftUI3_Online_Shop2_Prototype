@@ -21,7 +21,7 @@ struct MainView: View {
             
             TabView(selection: $currentTab) {
                 
-                Text("Home")
+                HomeView()
                     .tag(Tab.home)
                 
                 Text("Liked")
