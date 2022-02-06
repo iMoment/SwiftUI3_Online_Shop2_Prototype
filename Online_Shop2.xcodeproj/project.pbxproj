@@ -122,8 +122,8 @@
 				913738B227ADC97B0090BDC6 /* LoginPage.swift */,
 				915933D927AEF129006FCCF2 /* MainView.swift */,
 				915933E227AF1DD9006FCCF2 /* MoreProductsView.swift */,
-				915933DB27AEF442006FCCF2 /* TabViews */,
 				91F5908327B04FD800406A5D /* SearchView.swift */,
+				915933DB27AEF442006FCCF2 /* TabViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";

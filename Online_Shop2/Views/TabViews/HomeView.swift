@@ -97,7 +97,7 @@ struct HomeView: View {
         .overlay(
             ZStack {
                 if homeViewVM.searchActivated {
-                    SearchView()
+                    SearchView(animation: animation)
                         .environmentObject(homeViewVM)
                 }
             }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SearchView: View {
-//    var animation: Namespace.ID
+    var animation: Namespace.ID
     @EnvironmentObject var homeViewVM: HomeViewVM
     
     // Activate TextField with FocusState
@@ -23,6 +23,7 @@ struct SearchView: View {
                     withAnimation {
                         homeViewVM.searchActivated = false
                     }
+                    homeViewVM.searchText = ""
                 } label: {
                     Image(systemName: "arrow.left")
                         .font(.title2)
@@ -46,10 +47,10 @@ struct SearchView: View {
                     Capsule()
                         .strokeBorder(Color("purple01"), lineWidth: 1.5)
                 )
-//                .matchedGeometryEffect(id: "SEARCHBAR", in: animation)
+                .matchedGeometryEffect(id: "SEARCHBAR", in: animation)
                 .padding(.trailing, 20)
             }
-            .padding(.horizontal)
+            .padding([.horizontal])
             .padding(.top)
             .padding(.bottom, 10)
             
@@ -78,12 +79,12 @@ struct SearchView: View {
                     ScrollView(.vertical, showsIndicators: false) {
                         VStack(spacing: 0) {
                             // Found Text
-                            Text("Found \(homeViewVM.products.count) results")
+                            Text("Found \(products.count) results")
                                 .font(.custom(customFont, size: 24).bold())
                                 .padding(.vertical)
                             
                             // MARK: Staggered Grid
-                            StaggeredGrid(columns: 2, spacing: 20, list: homeViewVM.products) { product in
+                            StaggeredGrid(columns: 2, spacing: 20, list: products) { product in
                                 // MARK: Card View
                                 ProductCardView(product: product)
                             }
@@ -146,7 +147,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView()
-            .environmentObject(HomeViewVM())
+        HomeView()
     }
 }

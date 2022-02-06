@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+// MARK: Combine to monitor search field; search if user leaves for 0.5s
+import Combine
+
 class HomeViewVM: ObservableObject {
     @Published var productType: ProductType = .wearable
     
@@ -35,8 +38,19 @@ class HomeViewVM: ObservableObject {
     @Published var searchActivated: Bool = false
     @Published var searchedProducts: [Product]?
     
+    var searchCancellable: AnyCancellable?
+    
     init() {
         filterProductByType()
+        
+        searchCancellable = $searchText.removeDuplicates().debounce(for: 0.5, scheduler: RunLoop.main)
+            .sink(receiveValue: { inputString in
+                if inputString != "" {
+                    self.filterProductBySearch()
+                } else {
+                    self.searchedProducts = nil
+                }
+            })
     }
     
     func filterProductByType() {
