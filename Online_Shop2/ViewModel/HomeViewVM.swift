@@ -30,6 +30,10 @@ class HomeViewVM: ObservableObject {
     @Published var filteredProducts: [Product] = []
     @Published var showMoreProductsOnType: Bool = false
     
+    // MARK: Search Data
+    @Published var searchText: String = ""
+    @Published var searchActivated: Bool = false
+    
     init() {
         filterProductByType()
     }

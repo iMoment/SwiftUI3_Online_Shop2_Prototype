@@ -15,21 +15,14 @@ struct HomeView: View {
         ScrollView(.vertical, showsIndicators: false) {
             
             VStack(spacing: 15) {
-                // MARK: Search Bar
-                HStack(spacing: 15) {
-                    Image(systemName: "magnifyingglass")
-                        .font(.title2)
-                        .foregroundColor(.gray)
-                    
-                    TextField("Search", text: .constant(""))
-                        .disabled(true)
+                ZStack {
+                    if homeViewVM.searchActivated {
+                        SearchBar()
+                    } else {
+                        SearchBar()
+                            .matchedGeometryEffect(id: "SEARCHBAR", in: animation)
+                    }
                 }
-                .padding(.vertical, 12)
-                .padding(.horizontal)
-                .background(
-                    Capsule()
-                        .strokeBorder(Color.gray, lineWidth: 0.8)
-                )
                 .frame(width: getScreenSize().width / 1.6)
                 .padding(.horizontal, 25)
                 
@@ -93,7 +86,35 @@ struct HomeView: View {
         } content: {
             MoreProductsView()
         }
-
+        // MARK: Display Search View
+        .overlay(
+            ZStack {
+                if homeViewVM.searchActivated {
+                    SearchView(animation: animation)
+                        .environmentObject(homeViewVM)
+                }
+            }
+        )
+    }
+    
+    // MARK: Extracted to avoid code replication + matched geometry effect
+    @ViewBuilder
+    func SearchBar() -> some View {
+        // MARK: Search Bar
+        HStack(spacing: 15) {
+            Image(systemName: "magnifyingglass")
+                .font(.title2)
+                .foregroundColor(.gray)
+            
+            TextField("Search", text: .constant(""))
+                .disabled(true)
+        }
+        .padding(.vertical, 12)
+        .padding(.horizontal)
+        .background(
+            Capsule()
+                .strokeBorder(Color.gray, lineWidth: 0.8)
+        )
     }
     
     @ViewBuilder
