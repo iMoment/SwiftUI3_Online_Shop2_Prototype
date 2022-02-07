@@ -9,6 +9,9 @@ import SwiftUI
 
 struct MainView: View {
     @State var currentTab: Tab = .home
+    @StateObject var sharedData: SharedDataModel = SharedDataModel()
+    
+    @Namespace var animation
     
     // Hiding Tab Bar
     init() {
@@ -21,7 +24,8 @@ struct MainView: View {
             
             TabView(selection: $currentTab) {
                 
-                HomeView()
+                HomeView(animation: animation)
+                    .environmentObject(sharedData)
                     .tag(Tab.home)
                 
                 Text("Liked")
@@ -64,6 +68,15 @@ struct MainView: View {
             .padding(.bottom, 10)
         }
         .background(Color("homeBG").ignoresSafeArea())
+        .overlay(
+            ZStack {
+                // MARK: Detail Page
+                if let product = sharedData.detailProduct, sharedData.showDetailProduct {
+                    ProductDetailView(product: product, animation: animation)
+                        .environmentObject(sharedData)
+                }
+            }
+        )
     }
 }
 

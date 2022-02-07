@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
-    @Namespace var animation
+    var animation: Namespace.ID
+    
+    @EnvironmentObject var sharedData: SharedDataModel
     @StateObject var homeViewVM: HomeViewVM = HomeViewVM()
     
     var body: some View {
@@ -127,13 +129,21 @@ struct HomeView: View {
     @ViewBuilder
     func ProductCardView(product: Product)  -> some View {
         VStack(spacing: 10) {
-            Image(product.productImage)
-                .resizable()
-//                .renderingMode(.)
-                .aspectRatio(contentMode: .fit)
-                .frame(width: getScreenSize().width / 2.5, height: getScreenSize().width / 2.5)
-                .offset(y: -80)
-                .padding(.bottom, -80)
+            ZStack {
+                if sharedData.showDetailProduct {
+                    Image(product.productImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                } else {
+                    Image(product.productImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .matchedGeometryEffect(id: "\(product.id)IMAGE", in: animation)
+                }
+            }
+            .frame(width: getScreenSize().width / 2.5, height: getScreenSize().width / 2.5)
+            .offset(y: -80)
+            .padding(.bottom, -80)
             
             Text(product.title)
                 .font(.custom(customFont, size: 18))
@@ -156,6 +166,13 @@ struct HomeView: View {
             Color.white
                 .cornerRadius(25)
         )
+        // Showing Product Detail when tapped
+        .onTapGesture {
+            withAnimation(.easeInOut) {
+                sharedData.detailProduct = product
+                sharedData.showDetailProduct = true
+            }
+        }
     }
     
     @ViewBuilder
@@ -193,7 +210,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
-            .environmentObject(HomeViewVM())
+        MainView()
     }
 }
