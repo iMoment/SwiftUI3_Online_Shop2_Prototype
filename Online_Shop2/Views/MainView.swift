@@ -28,7 +28,8 @@ struct MainView: View {
                     .environmentObject(sharedData)
                     .tag(Tab.home)
                 
-                Text("Liked")
+                LikedPage()
+                    .environmentObject(sharedData)
                     .tag(Tab.liked)
                 
                 ProfilePage()
