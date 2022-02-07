@@ -35,7 +35,8 @@ struct MainView: View {
                 ProfilePage()
                     .tag(Tab.profile)
                 
-                Text("Cart")
+                CartPage()
+                    .environmentObject(sharedData)
                     .tag(Tab.cart)
             }
             
