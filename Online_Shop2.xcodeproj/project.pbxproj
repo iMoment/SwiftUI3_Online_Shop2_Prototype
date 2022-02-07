@@ -25,6 +25,8 @@
 		915933DF27AEF9C0006FCCF2 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915933DE27AEF9C0006FCCF2 /* Product.swift */; };
 		915933E127AEFB2A006FCCF2 /* HomeViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915933E027AEFB2A006FCCF2 /* HomeViewVM.swift */; };
 		915933E327AF1DD9006FCCF2 /* MoreProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915933E227AF1DD9006FCCF2 /* MoreProductsView.swift */; };
+		91EAA44A27B1C3FE00453D54 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91EAA44927B1C3FE00453D54 /* ProductDetailView.swift */; };
+		91EAA44C27B1C44000453D54 /* SharedDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91EAA44B27B1C44000453D54 /* SharedDataModel.swift */; };
 		91F5908427B04FD800406A5D /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F5908327B04FD800406A5D /* SearchView.swift */; };
 		91F5908627B054FE00406A5D /* StaggeredGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F5908527B054FE00406A5D /* StaggeredGrid.swift */; };
 /* End PBXBuildFile section */
@@ -50,6 +52,8 @@
 		915933DE27AEF9C0006FCCF2 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		915933E027AEFB2A006FCCF2 /* HomeViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewVM.swift; sourceTree = "<group>"; };
 		915933E227AF1DD9006FCCF2 /* MoreProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreProductsView.swift; sourceTree = "<group>"; };
+		91EAA44927B1C3FE00453D54 /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
+		91EAA44B27B1C44000453D54 /* SharedDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDataModel.swift; sourceTree = "<group>"; };
 		91F5908327B04FD800406A5D /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		91F5908527B054FE00406A5D /* StaggeredGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaggeredGrid.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,8 +93,8 @@
 				9137389427ADC3140090BDC6 /* Online_Shop2App.swift */,
 				9137389627ADC3140090BDC6 /* ContentView.swift */,
 				913738AB27ADC54B0090BDC6 /* Model */,
-				913738AA27ADC53E0090BDC6 /* Views */,
 				913738B427ADC9870090BDC6 /* ViewModel */,
+				913738AA27ADC53E0090BDC6 /* Views */,
 				913738AC27ADC5560090BDC6 /* Components */,
 				913738AF27ADC8490090BDC6 /* Helpers */,
 				9137389827ADC3150090BDC6 /* Assets.xcassets */,
@@ -125,6 +129,7 @@
 				915933D927AEF129006FCCF2 /* MainView.swift */,
 				915933E227AF1DD9006FCCF2 /* MoreProductsView.swift */,
 				91F5908327B04FD800406A5D /* SearchView.swift */,
+				91EAA44927B1C3FE00453D54 /* ProductDetailView.swift */,
 				915933DB27AEF442006FCCF2 /* TabViews */,
 			);
 			path = Views;
@@ -160,6 +165,7 @@
 			children = (
 				913738B527ADC9A50090BDC6 /* LoginPageVM.swift */,
 				915933E027AEFB2A006FCCF2 /* HomeViewVM.swift */,
+				91EAA44B27B1C44000453D54 /* SharedDataModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -247,10 +253,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				915933DD27AEF5B6006FCCF2 /* HomeView.swift in Sources */,
+				91EAA44A27B1C3FE00453D54 /* ProductDetailView.swift in Sources */,
 				9137389727ADC3140090BDC6 /* ContentView.swift in Sources */,
 				913738AE27ADC5730090BDC6 /* OnBoardingPage.swift in Sources */,
 				9137389527ADC3140090BDC6 /* Online_Shop2App.swift in Sources */,
 				915933E127AEFB2A006FCCF2 /* HomeViewVM.swift in Sources */,
+				91EAA44C27B1C44000453D54 /* SharedDataModel.swift in Sources */,
 				913738B327ADC97B0090BDC6 /* LoginPage.swift in Sources */,
 				913738B127ADC8570090BDC6 /* Extensions.swift in Sources */,
 				915933DA27AEF129006FCCF2 /* MainView.swift in Sources */,
