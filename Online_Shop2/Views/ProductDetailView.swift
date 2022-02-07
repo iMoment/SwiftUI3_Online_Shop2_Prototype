@@ -13,6 +13,7 @@ struct ProductDetailView: View {
     
     // Shared Data Model
     @EnvironmentObject var sharedData: SharedDataModel
+    @EnvironmentObject var homeViewVM: HomeViewVM
     
     var body: some View {
         VStack {
@@ -34,7 +35,7 @@ struct ProductDetailView: View {
                     Spacer()
                     
                     Button {
-                        
+                        addToLiked()
                     } label: {
                         Image(systemName: "heart.fill")
                             .renderingMode(.template)
@@ -101,7 +102,7 @@ struct ProductDetailView: View {
                     .padding(.vertical, 20)
                     
                     Button {
-                        
+                        addToCart()
                     } label: {
                         Text("add to basket")
                             .font(.custom(customFont, size: 20).bold())
@@ -128,7 +129,29 @@ struct ProductDetailView: View {
             )
             .zIndex(0)
         }
+        .animation(.easeInOut, value: sharedData.likedProducts)
+        .animation(.easeInOut, value: sharedData.cartProducts)
         .background(Color("homeBG").ignoresSafeArea())
+    }
+    
+    func addToLiked() {
+        if let index = sharedData.likedProducts.firstIndex(where: { product in
+            return self.product.id == product.id
+        }) {
+            sharedData.likedProducts.remove(at: index)
+        } else {
+            sharedData.likedProducts.append(product)
+        }
+    }
+    
+    func addToCart() {
+        if let index = sharedData.cartProducts.firstIndex(where: { product in
+            return self.product.id == product.id
+        }) {
+            sharedData.cartProducts.remove(at: index)
+        } else {
+            sharedData.cartProducts.append(product)
+        }
     }
 }
 
