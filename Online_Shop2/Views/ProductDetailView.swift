@@ -56,6 +56,7 @@ struct ProductDetailView: View {
                     .frame(maxHeight: .infinity)
             }
             .frame(height: getScreenSize().height / 2.7)
+            .zIndex(1)
             
             // MARK: Product Details
             ScrollView(.vertical, showsIndicators: false) {
@@ -125,6 +126,7 @@ struct ProductDetailView: View {
                     .clipShape(CustomCorners(corners: [.topLeft, .topRight], radius: 25))
                     .ignoresSafeArea()
             )
+            .zIndex(0)
         }
         .background(Color("homeBG").ignoresSafeArea())
     }

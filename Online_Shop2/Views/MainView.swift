@@ -74,6 +74,7 @@ struct MainView: View {
                 if let product = sharedData.detailProduct, sharedData.showDetailProduct {
                     ProductDetailView(product: product, animation: animation)
                         .environmentObject(sharedData)
+                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .opacity))
                 }
             }
         )
