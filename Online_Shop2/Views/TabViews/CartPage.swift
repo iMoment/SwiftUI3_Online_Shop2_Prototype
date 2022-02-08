@@ -60,7 +60,7 @@ struct CartPage: View {
                         } else {
                             // Displaying Liked Products
                             VStack(spacing: 15) {
-                                ForEach(sharedData.cartProducts) { product in
+                                ForEach($sharedData.cartProducts) { $product in
                                     HStack(spacing: 0) {
                                         if showDeleteOption {
                                             Button {
@@ -72,7 +72,7 @@ struct CartPage: View {
                                             }
                                             .padding(.trailing)
                                         }
-                                        CardView(product: product)
+                                        CardView(product: $product)
                                     }
                                 }
                             }
@@ -83,7 +83,7 @@ struct CartPage: View {
                     .padding()
                 }
                 // Showing Total and Check out Button
-                if sharedData.cartProducts.isEmpty {
+                if !sharedData.cartProducts.isEmpty {
                     Group {
                         HStack {
                             Text("Total")
@@ -92,7 +92,7 @@ struct CartPage: View {
                             
                             Spacer()
                             
-                            Text("$399")
+                            Text(sharedData.getTotalPrice())
                                 .font(.custom(customFont, size: 18).bold())
                                 .foregroundColor(Color("purple01"))
                         }
@@ -109,9 +109,9 @@ struct CartPage: View {
                                 .cornerRadius(15)
                                 .shadow(color: Color.black.opacity(0.05), radius: 5, x: 5, y: 5)
                         }
-                        .padding(.horizontal, 25)
                         .padding(.vertical)
                     }
+                    .padding(.horizontal, 25)
                 }
             }
             .navigationBarHidden(true)
@@ -121,38 +121,6 @@ struct CartPage: View {
                     .ignoresSafeArea()
             )
         }
-    }
-    
-    @ViewBuilder
-    func CardView(product: Product) -> some View {
-        HStack(spacing: 15) {
-            Image(product.productImage)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 100, height: 100)
-            
-            VStack(alignment: .leading, spacing: 8) {
-                Text(product.title)
-                    .font(.custom(customFont, size: 18).bold())
-                    .lineLimit(1)
-                
-                Text(product.subTitle)
-                    .font(.custom(customFont, size: 17))
-                    .fontWeight(.semibold)
-                    .foregroundColor(Color("purple01"))
-                
-                Text("Type: \(product.type.rawValue)")
-                    .font(.custom(customFont, size: 13))
-                    .foregroundColor(Color.gray)
-            }
-        }
-        .padding(.horizontal, 10)
-        .padding(.vertical, 10)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            Color.white
-                .cornerRadius(10)
-        )
     }
     
     func deleteProduct(product: Product) {
@@ -169,5 +137,72 @@ struct CartPage: View {
 struct CartPage_Previews: PreviewProvider {
     static var previews: some View {
         CartPage()
+    }
+}
+
+struct CardView: View {
+    
+    // Make product as Binding to update in real time
+    @Binding var product: Product
+    
+    var body: some View {
+        HStack(spacing: 15) {
+            Image(product.productImage)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100, height: 100)
+            
+            VStack(alignment: .leading, spacing: 8) {
+                Text(product.title)
+                    .font(.custom(customFont, size: 18).bold())
+                    .lineLimit(1)
+                
+                Text(product.subTitle)
+                    .font(.custom(customFont, size: 17))
+                    .fontWeight(.semibold)
+                    .foregroundColor(Color("purple01"))
+                
+                // Quantity Buttons
+                HStack(spacing: 10) {
+                    Text("Quantity")
+                        .font(.custom(customFont, size: 14))
+                        .foregroundColor(Color.gray)
+                    
+                    Button {
+                        product.quantity = (product.quantity > 0 ? (product.quantity - 1) : 0)
+                    } label: {
+                        Image(systemName: "minus")
+                            .font(.caption)
+                            .foregroundColor(Color.white)
+                            .frame(width: 20, height: 20)
+                            .background(Color("purple01"))
+                            .cornerRadius(4)
+                    }
+                    
+                    Text("\(product.quantity)")
+                        .font(.custom(customFont, size: 14))
+                        .fontWeight(.semibold)
+                        .foregroundColor(Color.black)
+                    
+                    Button {
+                        product.quantity += 1
+                    } label: {
+                        Image(systemName: "plus")
+                            .font(.caption)
+                            .foregroundColor(Color.white)
+                            .frame(width: 20, height: 20)
+                            .background(Color("purple01"))
+                            .cornerRadius(4)
+                    }
+                }
+            }
+        }
+        .padding(.horizontal, 10)
+        .padding(.vertical, 10)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            Color.white
+                .cornerRadius(10)
+        )
     }
 }

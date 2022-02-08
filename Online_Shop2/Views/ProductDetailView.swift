@@ -104,7 +104,7 @@ struct ProductDetailView: View {
                     Button {
                         addToCart()
                     } label: {
-                        Text("\(isAddedToCart() ? "added" : "add")to basket")
+                        Text("\(isAddedToCart() ? "added" : "add") to basket")
                             .font(.custom(customFont, size: 20).bold())
                             .foregroundColor(Color.white)
                             .padding(.vertical, 20)
